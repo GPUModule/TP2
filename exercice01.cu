@@ -161,7 +161,7 @@ int main(int argc, char **argv)
 	start = clock(); // start_timer(&timer);
 	matMulCPU(h_A, h_B, h_C_ref);
 	end = clock(); // stop_timer(&timer,"Produit matriciel CPU
-	printf ("max_index: %0.8f sec\n",
+	printf ("Produit matriciel CPU: %0.8f sec\n",
 		   ((float) end - start)/CLOCKS_PER_SEC);
 	// Check les erreurs
 	errors = matMulValidate(h_C, h_C_ref);
