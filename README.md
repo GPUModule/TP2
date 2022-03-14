@@ -20,7 +20,7 @@
 
 Pour ce TP, nous connaissons par avance les dimensions de nos matrices (sous forme de **#define** dans le code) :
 
-```C:
+```C
 #define A_WIDTH 1024
 #define A_HEIGHT 1024
 #define B_WIDTH 1024
@@ -32,7 +32,7 @@ Nous n'avons donc pas besoins d'allouer de l'espace mémoire avec des **malloc**
 
 Voici comment sont définis nos matrices dans le code :
 
-```C:
+```C
 __device__ float d_A[A_HEIGHT][A_WIDTH];
 __device__ float d_B[B_HEIGHT][B_WIDTH];
 __device__ float d_C[C_HEIGHT][C_WIDTH];
@@ -45,7 +45,7 @@ float h_C_ref[C_HEIGHT][C_WIDTH];
 
 Pour cet exercice, vous allez modifier l'implémentation CPU de multiplication de matrices pour le faire tourner sur GPU. la fonction permettant de faire un multiplication matricielle est déja codé sous le nom de **matMulCPU**.
 
-```C:
+```C
 void matMulCPU(float A[A_HEIGHT][A_WIDTH], float B[C_HEIGHT][C_WIDTH], float C[C_HEIGHT][C_WIDTH])
 {
 	int x, y, k;
@@ -66,7 +66,7 @@ Avant d'implementer le kernel permettant de faire un multiplication de matrices,
 
 Dans la fonction **main**, 3 entiers non signés sont déclarés permettant de définir la taille en octets des matrices A, B et C.
 
-```C:
+```C
 unsigned int octets_A, octets_B, octets_C;
 ```
 
@@ -74,7 +74,7 @@ unsigned int octets_A, octets_B, octets_C;
 
 Completez les instructions suivante :
 
-```C:
+```C
 	// 1.1.1 Recuperer la taille en octets des matrices A, B et C.
 	octets_A = 
 	octets_B = 
@@ -85,7 +85,7 @@ Completez les instructions suivante :
 
 Completez les instructions suivante :
 
-```C:
+```C
 	// 1.1.2 Copie de la memoire Host sur le Device.
 	cudaMemcpyToSymbol(A remplir, A remplir, A remplir); //cudaMemcpyToSymbol(destination, source, taille en octets);
 	cudaMemcpyToSymbol(A remplir, A remplir, A remplir); //cudaMemcpyToSymbol(destination, source, taille en octets);
@@ -96,7 +96,7 @@ Completez les instructions suivante :
 
 Completez l'instruction suivante :
 
-```
+```C
 	// 1.1.3 Copie du resultat depuis le device vers l'host
 	cudaMemcpyFromSymbol(A remplir, A remplir, A remplir); // cudaMemcpyFromSymbol(destination, source, taille en octets);
 	checkCUDAError("CUDA memcpy results");
@@ -186,7 +186,7 @@ Apportez les modifications demandées ci-dessous dans la fonction **matMulKernel
 
 Calculer les indices globaux des threads des matrices A et B requis pour faire la copie depuis la mémoire globale vers la mémoire partagée. 
 
-```C:
+```C
 		//2.1: Calculer les indices globaux des threads des matrices A et B requis pour faire la copie depuis la memoire globale vers la memoire partagee. 
        int a_x = ;
        int a_y = ;
@@ -199,7 +199,7 @@ Calculer les indices globaux des threads des matrices A et B requis pour faire l
 Chaque thread doit charger un seul element de A et B dans les sous_matrices As et Bs
 Completez la fonction suivante.
 
-```C:
+```C
 		//2.2: Chaque thread doit charger un seul element de A et B dans les sous_matrices As et Bs
        As[A remplir][A remplir] =
        Bs[A remplir][A remplir] =
@@ -209,7 +209,7 @@ Completez la fonction suivante.
 
 Effectuez le produit matriciel entre la sous-matrice As et la sous-matrice Bs
 
-```C:
+```C
 		//2.3: Produit matricielle de la As et Bs
 		for (int k = 0; k < BLOCK_SIZE; ++k)
 		{
@@ -221,7 +221,7 @@ Effectuez le produit matriciel entre la sous-matrice As et la sous-matrice Bs
 
 Calculez les indices globaux des threads permettant de stocker le résultat Csub dans la matrice C.
 
-```C:
+```C
 	//2.4: Calculer les indices globaux des threads de la matrice C
 	int c_x = ;
 	int c_y = ;
