@@ -156,9 +156,13 @@ int main(int argc, char **argv)
 	checkCUDAError("CUDA memcpy results");
 
 	// Version de la multiplication matricielle sur CPU
-	start_timer(&timer);
+	// Timer Host
+	clock_t start, end;
+	start = clock(); // start_timer(&timer);
 	matMulCPU(h_A, h_B, h_C_ref);
-	stop_timer(&timer,"Produit matriciel GPU");
+	end = clock(); // stop_timer(&timer,"Produit matriciel CPU
+	printf ("max_index: %0.8f sec\n",
+		   ((float) end - start)/CLOCKS_PER_SEC);
 	// Check les erreurs
 	errors = matMulValidate(h_C, h_C_ref);
 	if (errors)

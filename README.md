@@ -1,5 +1,36 @@
 ## TP2 : Programmation GPU en CUDA
 
+### Erreur sur le timer du CPU
+------------------------------
+Sur le notebook exercice01.ipynb il faut suprimmer la ligne :
+
+```C
+#include "utils.h"
+```
+
+Le timer utilisé pour calculer le temps du produit matriciel sur GPU n'est pas bon. Il va calculer le temps du GPU qui ne fait rien.
+
+Changer les instructions suivantes :
+
+```C
+	// Version de la multiplication matricielle sur CPU
+	start_timer(&timer);
+	matMulCPU(h_A, h_B, h_C_ref);
+	stop_timer(&timer,"Produit matriciel GPU");
+```
+par :
+
+```C
+	clock_t start, end;
+	start = clock(); // start_timer(&timer);
+	matMulCPU(h_A, h_B, h_C_ref);
+	end = clock(); // stop_timer(&timer,"Produit matriciel CPU
+	printf ("max_index: %0.8f sec\n",
+		   ((float) end - start)/CLOCKS_PER_SEC);
+```
+
+**J'ai mis à jour les fichiers sur le github.**
+
 ### Objectifs du TP :
 ---------------------
 * Mesurer le gain de performance en utilisant une version GPU de la multiplication matricielle
