@@ -11,6 +11,7 @@
 * Les TPs seront notés à partir d'aujourd'hui (Le TP1 ne l'est pas).
 * Le TP est à réaliser seul ou en binôme.
 * A rendre sur ametice en spécifiant si vous avez fait le TP seul ou en binôme, en mentionnant votre prénom ainsi que votre nom (prénom et nom de chaque membre si en binôme).
+* A rendre avant le 20 Mars 2022, 23:00.
 
 
 ### Exercice 1 : Multiplication de matrices
