@@ -284,7 +284,9 @@ Si vous travaillez sur google Colab, vous pouvez exporter une version pdf **temp
 
 #### 2.7. Dimensions des blocs
 
-Executez de nouveau le programme avec un BLOCK\_SIZE de 128, puis 256. Recuperez les temps d'executions pour la version GPU normale du produit matriciel et la version avec la mémoire partagée.
+Pour les exercices précedents, nous avons utilisé des blocks de dimensions 8x8, c'est à dire de 128 threads.
+
+Executez de nouveau le programme avec un BLOCK\_SIZE de 16, le nombre de threads équivaut à 16*16 (256). Recuperez les temps d'executions pour la version GPU normale du produit matriciel et la version avec la mémoire partagée.
 
 Notez ce temps et cette occupation. Vous pouvez crire ces informations dans un bloc-note ou alors les enregistrer dans un ficher avec la commande:
 
@@ -294,12 +296,10 @@ Notez ce temps et cette occupation. Vous pouvez crire ces informations dans un b
 
 Si vous travaillez sur google Colab, vous pouvez exporter une version pdf **temps-exo-2-7-TP2.pdf** du notebook.
 
-| Méthode   | BLOCK\_SIZE | Temps  |
-|-----------|-------------|--------|
-| GPU       |    128      |        |
-| GPU       |    256      |        |
-| GPU_shared|    128      |        |
-| GPU_shared|    256      |        |
+| Méthode   | BLOCK\_SIZE * BLOCK\_SIZE | Temps  |
+|-----------|---------------------------|--------|
+| GPU       |    16x16  (256)           |        |
+| GPU_shared|    16x16  (256)           |        |
 
 
 
